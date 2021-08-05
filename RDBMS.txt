@@ -1,0 +1,47 @@
+create table pet(pet_id int(10),pet_name varchar2(10),
+pet_type varchar2(9),pet_age int,owner varchar2(10),
+CONSTRAINT pet_PRIMARY_KEY PRIMARY KEY (pet_id));
+
+INSERT INTO pet VALUES (246,'ROVER','DOG',12,'SAMCOOK');
+INSERT INTO pet VALUES (298,'SPOT','DOG',2,'TERRYKIM');
+INSERT INTO pet VALUES (341,'MORRIS','CAT',4,'SAMCOOK');
+INSERT INTO pet VALUES (519,'TWEEDY','BIRD',2,'TERRYKIM');
+INSERT INTO pet VALUES (444,'SHUMPI','BIRD',5,'MAC');
+INSERT INTO pet VALUES (222,'MILO','DOG',10,'SANJOSE');
+
+Create table visit(pet_id int(10),visit_date DATE,procedure_id int,CONSTRAINT p1_pk PRIMARY KEY (visit_date,procedure_id),
+CONSTRAINT ref_emp_fk FOREIGN KEY (pet_id) REFERENCES pet (pet_id));
+INSERT INTO visit VALUES (246,'13-jan-2002',1);
+INSERT INTO visit VALUES (246,'27-march-2002',10);
+INSERT INTO visit VALUES (246,'02-apr-2002',5);
+INSERT INTO visit VALUES (298,'21-jan-2002',8);
+INSERT INTO visit VALUES (298,'10-march-2002',5);
+INSERT INTO visit VALUES (341,'23-jan-2001',1);
+INSERT INTO visit VALUES (341,'13-jan-2002',1);
+INSERT INTO visit VALUES (519,'30-apr-2002',20);
+INSERT INTO visit VALUES (519,'30-apr-2002',12);
+INSERT INTO visit VALUES (444,'30-aug-2002',20);
+INSERT INTO visit VALUES (444,'30-apr-2002',12);
+INSERT INTO visit VALUES (222,'13-feb-2003',1);
+INSERT INTO visit VALUES (222,'27-mar-2003',10);
+INSERT INTO visit VALUES (222,'12-apr-2003',5);
+
+
+
+Create table procedure(visit_date DATE,procedure_id int,procedure_name varchar2(20),
+CONSTRAINT mp_fk FOREIGN KEY (visit_date,procedure_id) references visit(visit_date,procedure_id));
+INSERT INTO procedure VALUES ('13-jan-2002',1,'RABIESVACCINATION');
+INSERT INTO procedure VALUES ('27-march-2002',10,'EXAMINEandTREATWOUND');
+INSERT INTO procedure VALUES ('02-apr-2002',5,'HEARTWORMTEST');
+INSERT INTO procedure VALUES ('21-jan-2002',8,'TETANUSVACCINATION');
+INSERT INTO procedure VALUES ('10-march-2002',5,'HEARTWORMTEST');
+INSERT INTO procedure VALUES ('23-jan-2001',1,'RABIESVACCINATION');
+INSERT INTO procedure VALUES ('13-jan-2002',1,'RABIESVACCINATION');
+INSERT INTO procedure VALUES ('30-apr-2002',20,'ANNUALCHECKUP');
+INSERT INTO procedure VALUES ('30-apr-2002',12,'EYEWASH');
+INSERT INTO procedure VALUES ('30-aug-2002',20,'ANNUALCHECKUP');
+INSERT INTO procedure VALUES ('30-apr-2002',12,'EYEWASH');
+INSERT INTO procedure VALUES ('13-feb-2003',1,'RABIESVACCINATION');
+INSERT INTO procedure VALUES ('27-mar-2003',10,'EXAMINEandTREATWOUND');
+INSERT INTO procedure VALUES ('12-apr-2003',5,'HEARTWORMTEST');
+

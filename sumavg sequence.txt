@@ -1,0 +1,53 @@
+/*Write a program that reads from the console a sequence of positive integer numbers. 
+The sequence ends when empty line is entered. Calculate and print the sum and average of the elements of the sequence. Keep the sequence in List<int>.*/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class SumAvg
+{
+    public static void Main()
+    {
+        List<int> sequence = ReadIntegers();
+        Console.WriteLine(sequence.Sum());
+        Console.WriteLine(sequence.Average());
+    }
+
+    private static List<int> ReadIntegers()
+    {
+        Console.WriteLine(" enter positive integer and press Enter: ");
+        List<int> sequence = new List<int>();
+        string input = Console.ReadLine();
+        while (input != string.Empty)
+        {
+            int number;
+            try
+            {
+                number = int.Parse(input);
+                if (number < 0)
+                {
+                    Console.WriteLine("please enter positive no!");
+                }
+                else
+                {
+                    sequence.Add(number);
+                    Console.WriteLine(input + " added");
+                }
+            }
+            catch (OverflowException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("please enter integer numbers");
+            }
+            
+            input = Console.ReadLine();
+        }
+
+        Console.WriteLine("numbers are: " + string.Join(", ", sequence));
+        return sequence;
+	}
+}
